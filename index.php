@@ -29,5 +29,27 @@
     		$('.sidenav').sidenav();
   		});
   	</script>
+  	<br>
+  	<div class="container">
+  		<div class="row">
+  			<form class="col s12">
+  				<div class="row">
+  					<div class="input-field col s6">
+  						<input id="user" type="text" class="validate" name="user">
+  						<label for="user">User Name</label>
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="input-field col s6">
+  						<input id="pass" type="password" class="validate" name="pass">
+  						<label for="pass">Password</label>
+  					</div>
+  				</div>
+  				<div class="row">
+  					<input type="submit" class="btn">
+  				</div>
+  			</form>
+  		</div>
+  	</div>
   </body>
 </html>
