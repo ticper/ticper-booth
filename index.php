@@ -32,17 +32,17 @@
   	<br>
   	<div class="container">
   		<div class="row">
-  			<form class="col s12" action="login.php" method="GET">
+  			<form class="col s12" action="login.php" method="POST">
   				<div class="row">
   					<div class="input-field col s6">
-  						<input id="user" type="text" class="validate" name="user">
-  						<label for="user">User Name</label>
+  						<input id="username" type="text" class="validate" name="user">
+  						<label for="username">User Name</label>
   					</div>
   				</div>
   				<div class="row">
   					<div class="input-field col s6">
-  						<input id="pass" type="password" class="validate" name="pass">
-  						<label for="pass">Password</label>
+  						<input id="password" type="password" class="validate" name="pass">
+  						<label for="password">Password</label>
   					</div>
   				</div>
   				<div class="row">

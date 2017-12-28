@@ -3,8 +3,8 @@
 
 	session_start();
 
-	$username = $_REQUEST['user'];
-	$password = $_REQUEST['pass'];
+	$username = $_POST['user'];
+	$password = $_POST['pass'];
 
 	$dblink = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
