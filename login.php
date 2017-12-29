@@ -1,5 +1,5 @@
 <?php
-	require_once('dbconfig.php');
+	require_once('loader.php');
 
 	session_start();
 
@@ -17,7 +17,7 @@
 	$result = mysqli_fetch_array($sql);
 
 	if($result['userid'] != $username or $result['password'] != $password) {
-		print('<script>alert("User not found or cannot match password."); location.href = "index.php";</script>');
+		print('<script>alert("'.$lang_user_wrong.'"); location.href = "index.php";</script>');
 	} else if ($result['userid'] == $username and $result['password'] == $password) {
 		$_SESSION['user'] = $username;
 		print("<script>location.href = 'home.php';</script>");
