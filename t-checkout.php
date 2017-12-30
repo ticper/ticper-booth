@@ -48,9 +48,21 @@
     		$('.sidenav').sidenav();
   		});
   	</script>
-    <div class="container">
-      <p><?php print($lang_home_please_select); ?></p>
-      
-    </div>
+  	<table>
+  		<thead>
+  			<tr>
+  				<th>食品名</th><th>QRコード</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+
+  			<?php
+  				$reserveid = $_SESSION['recepid'];
+  				$sql = mysqli_query($dblink, "SELECT * FROM reserve WHERE rsid = '$reserveid'");
+  				while($result = mysqli_fetch_assoc($sql)) {
+  					print('<tr>');
+  					print()
+  				}
+  			?>
   </body>
-</html>
+ </html>
