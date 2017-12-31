@@ -50,49 +50,42 @@
   		});
   	</script>
   	<div class="container">
-  	<table>
-  		<thead>
-  			<tr>
-  				<th><?php print($lang_food_name); ?></th><th><?php print($lang_food_price); ?></th>
-  			</tr>
-  		</thead>
-  		<tbody>
-
+  		<table>
+  			<tbody>
+  				<?php
+  					$recepid = isset($_SESSION['recepid']);
+  					$goukei = 0;
+  					$sql = mysqli_query($dblink, "SELECT * FROM reserve WHERE rsid = '$recepid'");
+  					while ($result = mysqli_fetch_assoc($sql)) {
+  						$org = $result['org'];
+  						$food = $result['food'];
+  						$ac = rand(1000, 9999);
+  						$sql2 = mysqli_query($dblink, "INSERT INTO ticket ('id', 'org', 'food', 'ac') VALUES (NULL, '$org', '$food', '$ac');");
+  						$sql3 = mysqli_query($dblink, "SELECT name, price FROM food WHERE id = '$food'");
+  						$result2 = mysqli_fetch_assoc($sql3);
+  						$goukei = $goukei + $result2['price'];
+  						print('<tr>');
+  						print('<td>'.$result2['name'].'('.$ac.')</td>');
+  						print('<td><img src="https://api.qrserver.com/v1/create-qr-code/?data='.$ac.'&size=200x200" alt="QRコード" />'.'</td>');
+  						print('</tr>');
+  					}
+  				?>
+  			</tbody>
   			<?php
-  				$goukei = 0;
-  				$reserveid = isset($_SESSION['recepid']);
-  				$sql = mysqli_query($dblink, "SELECT * FROM reserve WHERE rsid = '$reserveid'");
-  				while($result = mysqli_fetch_assoc($sql)) {
-  					print('<tr>');
-  					$food = $result['food'];
-  					$sql2 = mysqli_query($dblink, "SELECT * FROM food WHERE id = '$food'");
-  					$result1 = mysqli_fetch_assoc($sql2);
-  					print("<td>".$result1['name']."</td><td>".$result1['price']." ".$lang_money."</td>");
-  					print('</tr>');
-  					$goukei = $goukei + $result1['price'];
-  				}
+  				print('<hr />');
+  				print('<table>');
+  				print('<tbody>');
+  				print('<tr>');
+  				print('<td>'.$lang_checkout_total.'</td><td>'.$goukei." ".$lang_money."</td>");
+  				print('</tr><tr>');
+  				print('<td>'.$lang_checkout_deposit.'</td><td>'.$_POST['dp']." ".$lang_money."</td>");
+  				print('</tr><tr>');
+  				$change = $_POST['dp'] - $goukei;
+  				print('<td>'.$lang_checkout_change.'</td><td>'.$change." ".$lang_money."</td></tr>");
+  				print('</tbody>');
+  				print('</table>');
   			?>
-  		</tbody>
-  	</table>
-  	<hr />
-  	<table>
-  		<tbody>
-  			<tr>
-  				<td><?php print($lang_checkout_total); ?></td><td><?php print($goukei." ".$lang_money); ?></td>
-  			</tr>
-  		</tbody>
-  	</table>
-  	<form action="t-checkouted.php" method="POST" class="col s12" name="kaikei">
-  		<div class="input-field col s12">
-  			<input id="deposit" type="number" class="validate" name="dp">
-        	<label for="deposit"><?php print($lang_checkout_deposit); ?></label>
-        </div>
-      	<div class="col s12">
-      		<input type="submit" class="btn">
-      	</div>
-    </form>
-  	</form>
-  	</div>
-
-  </body>
- </html>
+  			<form>
+				<input type="button" value="このページを印刷する" onclick="window.print();" class="btn" />
+			</form>
+  		</table>

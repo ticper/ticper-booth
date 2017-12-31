@@ -33,5 +33,6 @@
 	$lang_food_price = "Price";
 	$lang_checkout_total = "Total";
 	$lang_checkout_deposit = "Deposit";
+	$lang_checkout_change = "Change"
 
 ?>
