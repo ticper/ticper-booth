@@ -48,21 +48,39 @@
     		$('.sidenav').sidenav();
   		});
   	</script>
+  	<div class="container">
   	<table>
   		<thead>
   			<tr>
-  				<th>食品名</th><th>QRコード</th>
+  				<th><?php print($lang_food_name); ?></th><th><?php print($lang_food_price); ?></th>
   			</tr>
   		</thead>
   		<tbody>
 
   			<?php
+  				$goukei = 0;
   				$reserveid = $_SESSION['recepid'];
   				$sql = mysqli_query($dblink, "SELECT * FROM reserve WHERE rsid = '$reserveid'");
   				while($result = mysqli_fetch_assoc($sql)) {
   					print('<tr>');
-  					print()
+  					$food = $result['food'];
+  					$sql = mysqli_query($dblink, "SELECT * FROM food WHERE id = '$food'");
+  					$result1 = mysqli_fetch_assoc($sql);
+  					print("<td>".$result1['name']."</td><td>".$result1['price'].$lang_money."</td>");
+  					print('</tr>');
+  					$goukei = goukei + $result1['price'];
   				}
   			?>
+  		</tbody>
+  	</table>
+  	<table>
+  		<tbody>
+  			<tr>
+  				<td><?php print($lang_checkout_total); ?></td><td><?php print($goukei.$lang_money); ?></td>
+  			</tr>
+  		</tbody>
+  	</table>
+  	</div>
+
   </body>
  </html>
