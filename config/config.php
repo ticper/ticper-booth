@@ -10,5 +10,5 @@
 	// 言語設定
 	// English: EN
 	// 日本語: JP
-	$lang = "EN";
+	$lang = "JP";
 ?>
