@@ -6,11 +6,12 @@
 		header('<script>alert();location.href = "index.php";</script>');
 	} else {}
 
-	$username = isset($_SESSION['user']);
+	$username = $_SESSION['user'];
 
 	$dblink = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 	$sql = mysqli_query($dblink, "SELECT name FROM userbooth WHERE userid = '$username'");
+	mysqli_set_charset($dblink, "utf8");
 	$result = mysqli_fetch_assoc($sql);
 ?>
 <!DOCTYPE HTML>
@@ -59,16 +60,16 @@
 
   			<?php
   				$goukei = 0;
-  				$reserveid = $_SESSION['recepid'];
+  				$reserveid = isset($_SESSION['recepid']);
   				$sql = mysqli_query($dblink, "SELECT * FROM reserve WHERE rsid = '$reserveid'");
   				while($result = mysqli_fetch_assoc($sql)) {
   					print('<tr>');
   					$food = $result['food'];
   					$sql = mysqli_query($dblink, "SELECT * FROM food WHERE id = '$food'");
   					$result1 = mysqli_fetch_assoc($sql);
-  					print("<td>".$result1['name']."</td><td>".$result1['price'].$lang_money."</td>");
+  					print("<td>".$result1['name']."</td><td>".$result1['price']." ".$lang_money."</td>");
   					print('</tr>');
-  					$goukei = goukei + $result1['price'];
+  					$goukei = $goukei + $result1['price'];
   				}
   			?>
   		</tbody>
@@ -76,7 +77,7 @@
   	<table>
   		<tbody>
   			<tr>
-  				<td><?php print($lang_checkout_total); ?></td><td><?php print($goukei.$lang_money); ?></td>
+  				<td><?php print($lang_checkout_total); ?></td><td><?php print($goukei." ".$lang_money); ?></td>
   			</tr>
   		</tbody>
   	</table>

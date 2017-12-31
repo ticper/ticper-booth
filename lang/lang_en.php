@@ -5,7 +5,7 @@
 
 	$lang_session_expired = "There is a problem with the session. Transit to login page.";
 
-	$lang_money = "Japanese Yen"
+	$lang_money = "Japanese Yen";
 	// Title
 	$lang_title_login = "Login";
 	$lang_title_menu = "Menu";
@@ -32,5 +32,6 @@
 	$lang_food_name = "Name";
 	$lang_food_price = "Price";
 	$lang_checkout_total = "Total";
+	$lang_checkout_deposit = "Deposit";
 
 ?>
