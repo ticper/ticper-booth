@@ -74,7 +74,6 @@
   			?>
   		</tbody>
   	</table>
-  	<hr />
   	<table>
   		<tbody>
   			<tr>
