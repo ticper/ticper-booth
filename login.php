@@ -9,7 +9,7 @@
 	$result = mysqli_fetch_assoc($sql);
 
 	if ($result['userid'] == $user_id AND $result['password'] == $password) {
-		$_SESSION['user_id'] == $user_id;
+		$_SESSION['user_id'] = $user_id;
 		print('<script>location.href="home.php";</script>');
 	} else {
 		print('<script>alert("入力内容が間違っています。"); location.href="index.php";</script>');
