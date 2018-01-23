@@ -1,3 +1,0 @@
-# ticper-booth
-
-どうしよう
