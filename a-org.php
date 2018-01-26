@@ -18,7 +18,7 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="ログイン" />
 		<meta property="og:site_name" content="Ticper" />
-		<title>ホーム - Ticper</title>
+		<title>団体登録 - Ticper</title>
 
 		<!-- Jquery -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -36,7 +36,6 @@
   			<li class="divider"></li>
 		</ul>
 		<ul id="dropdown2" class="dropdown-content">
-			<li><a href="u-registerorg.php">団体ユーザ登録</a></li>
 			<li><a href="u-registerbooth.php">会計ユーザ登録</a></li>
 		</ul>
 		<nav>
@@ -54,7 +53,6 @@
 						<li><a href="a-org.php">団体登録</a></li>
 						<li><a href="a-food.php">食品登録</a></li>
 						<li><a href="i-orgfood.php">団体・食品一覧</a></li>
-						<li><a href="u-registerorg.php">団体ユーザ登録</a></li>
 						<li><a href="u-registerbooth.php">会計ユーザ登録</a></li>
 					</ul>
 				</div>
@@ -69,6 +67,7 @@
   		<div class="container">
   			<div class="row">
   				<div class="col s12">
+  					<h2>団体登録</h2>
   					<form action="a-org-do.php" method="POST">
   						<div class="input-field s6 m12">
   							<input type="text" class="validate" id="name" name="name">

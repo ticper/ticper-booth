@@ -36,7 +36,6 @@
   			<li class="divider"></li>
 		</ul>
 		<ul id="dropdown2" class="dropdown-content">
-			<li><a href="u-registerorg.php">団体ユーザ登録</a></li>
 			<li><a href="u-registerbooth.php">会計ユーザ登録</a></li>
 		</ul>
 		<nav>
@@ -54,7 +53,6 @@
 						<li><a href="a-org.php">団体登録</a></li>
 						<li><a href="a-food.php">食品登録</a></li>
 						<li><a href="i-orgfood.php">団体・食品一覧</a></li>
-						<li><a href="u-registerorg.php">団体ユーザ登録</a></li>
 						<li><a href="u-registerbooth.php">会計ユーザ登録</a></li>
 					</ul>
 				</div>
