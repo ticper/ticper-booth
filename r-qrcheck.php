@@ -29,7 +29,7 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 		<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-		
+
 	</head>
 	<body>
 		<ul id="dropdown1" class="dropdown-content">
@@ -67,3 +67,24 @@
     			$(".dropdown-trigger").dropdown();
   			});
   		</script>
+  		<div class="container">
+  			<div class="row">
+  				<div class="col s12">
+  					<h2>QRコードチェック</h2>
+  					<p>QRコードを撮影するか予約コードを入力してください。</p>
+  					<form action="r-qrcheck-do.php" method="POST">
+  						<div class="input-field s12 m6">
+  							<input id="rcode" class="validate" name="rcode" type="text">
+  							<label for="rcode">予約コード</label>
+  						</div>
+  						<input type="submit" value="送信" class="btn">
+  					</form>
+  					<video id="preview"></video>
+  					<script>
+  						var videoTag = document.getElementById('preview');
+  						var scanner = new Instascan.Scanner({ video: videoTag 00});
+
+  						scanner.addListener('scan', function (value)) {
+  							var resultForm = document.getElementById("resultForm");
+    						resultForm.value = value;
+  						}
