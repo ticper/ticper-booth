@@ -8,16 +8,12 @@
 	$whereis = $_POST['where'];
 	$password = $_POST['pass'];
 
-	mysqli_real_escape_string($name);
-	mysqli_real_escape_string($whereis);
-	mysqli_real_escape_string($password);
-
 
 	require_once('config/config.php');
 
 	$user = $_SESSION['user_id'];
 
-	if (!empty($name) AND !empty($whereis) AND !empty($password) {
+	if (!empty($name) AND !empty($whereis) AND !empty($password)) {
 		$sql = mysqli_query($link, "SELECT count(*) AS num FROM org");
 		$result = mysqli_fetch_assoc($sql);
 		$id = $result['num'] + 1;
