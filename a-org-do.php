@@ -17,15 +17,17 @@
 
 	$user = $_SESSION['user_id'];
 
-	if (empty($name) OR empty($whereis) OR empty($password) {
-		$message = "会計 - 不正な操作(空白で団体追加)";
-		$sql = mysqli_query($link, "INSERT INTO log VALUES (CURRENT_TIMESTAMP, '$message', '$user');");
-		print("<script>alert('いずれかの項目が空白になっています。');location.href = 'a-org.php';</script>");
-	} else {
+	if (!empty($name) AND !empty($whereis) AND !empty($password) {
 		$sql = mysqli_query($link, "SELECT count(*) AS num FROM org");
 		$result = mysqli_fetch_assoc($sql);
 		$id = $result['num'] + 1;
-		$sql = mysqli_query()
+		$sql = mysqli_query($link, "INSERT INTO org VALUES ('$id', '$name', '$whereis', '$password');");
+		$message = "会計 - 団体「".$name."」を追加";
+		$sql = mysqli_query($link, "INSERT INTO log VALUES (CURRENT_TIMESTAMP, '$message', '$user');");
+	} else {
+		$message = "会計 - 不正な操作(空白/XSS)";
+		$sql = mysqli_query($link, "INSERT INTO log VALUES (CURRENT_TIMESTAMP, '$message', '$user');");
+		print("<script>alert('いずれかの項目が空白になっています。');location.href = 'a-org.php';</script>");
 	}
 
 ?>
