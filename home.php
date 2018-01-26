@@ -68,4 +68,17 @@
   		</script>
   		<div class="container">
   			<div class="row">
-  				<div class="col s12 ">
+  				<div class="col s12">
+  					<?php
+  						$user_id = $_SESSION['user_id'];
+  						require_once('config/config.php');
+  						$sql = mysqli_query($link, "SELECT name FROM user_booth WHERE userid = '$user_id'");
+  						$result = mysqli_fetch_assoc($sql);
+  					?>
+  					<h2>メニュー</h2>
+  					<p>ようこそ、<?php print($result['name']); ?>さん。<br>画面上部のメニューからやりたいことを選択してください。</p>
+  				</div>
+  			</div>
+  		</div>
+ 	</body>
+</html>
