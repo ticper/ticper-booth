@@ -24,10 +24,11 @@
 		$sql = mysqli_query($link, "INSERT INTO org VALUES ('$id', '$name', '$whereis', '$password');");
 		$message = "会計 - 団体「".$name."」を追加";
 		$sql = mysqli_query($link, "INSERT INTO log VALUES (CURRENT_TIMESTAMP, '$message', '$user');");
+		print("<script>alert('登録しました。');location.href = 'a-org.php';</script>");
 	} else {
 		$message = "会計 - 不正な操作(空白/XSS)";
 		$sql = mysqli_query($link, "INSERT INTO log VALUES (CURRENT_TIMESTAMP, '$message', '$user');");
-		print("<script>alert('いずれかの項目が空白になっています。');location.href = 'a-org.php';</script>");
+		print("<script>alert('不正な操作です。	');location.href = 'a-org.php';</script>");
 	}
 
 ?>
