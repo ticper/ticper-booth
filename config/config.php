@@ -1,7 +1,7 @@
 <?php
 	$db_host = "localhost";
 	$db_user = "root";
-	$db_pswd = "ticp-37648";
+	$db_pswd = "";
 	$db_name = "ticper";
 
 	$link = mysqli_connect($db_host, $db_user, $db_pswd, $db_name);
