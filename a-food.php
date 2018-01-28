@@ -85,6 +85,10 @@
   							<textarea id="desc" name="desc" class="materialize-textarea"></textarea>
   							<label for="desc">説明</label>
   						</div>
+  						<div class="input-field s6 m12">
+  							<input tyoe="number" class="validate" id="stock" name="stock">
+  							<label for="stock">販売数</label>
+  						</div>
   						<input type="submit" id="submit" class="btn">
    					</form>
    				</div>
