@@ -5,6 +5,7 @@
 	$user_id = $_POST['user_id'];
 	$password = $_POST['password'];
 	if(!empty($user_id) OR !empty($password)) {
+		$hash = password_hash($password, PASSWORD_DEFAULT);
 		$sql = mysqli_query($link, "SELECT * FROM user_booth WHERE userid = '$user_id';");
 		$result = mysqli_fetch_assoc($sql);
 

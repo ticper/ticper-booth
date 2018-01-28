@@ -10,6 +10,7 @@
 	if ($result['userid'] == $userid) {
 		print('<script>alert("ユーザが既に存在します。"); location.href = "u-registerbooth.php";</script>');
 	} else {
+		$hash = password_hash($pass, PASSWORD_DEFAULT);
 		$sql = mysqli_query($link, "INSERT INTO user_booth VALUES ('$userid', '$name', '$pass')");
 		print('<script>alert("登録しました。"); location.href = "u-registerbooth.php";</script>');
 	}
