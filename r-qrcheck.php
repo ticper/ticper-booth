@@ -80,32 +80,34 @@
   						<input type="submit" value="送信" class="btn">
   					</form>
   					<video id="preview"></video>
-  					<script>
-  						Instascan.Camera.getCameras().then(function (cameras) {
+     				<script>
+      					var videoTag = document.getElementById('preview');
+      					var info = document.getElementById('rcode');
+      					var scanner = new Instascan.Scanner({ video: videoTag });
+      					
+      					//QRコードを認識して情報を取得する
+      					scanner.addListener('scan', function (value) {
+        					info.value = value;
+      					});
+      
+      					//PCのカメラ情報を取得する
+      					Instascan.Camera.getCameras()
+      					.then(function (cameras) {
+          
+          					//カメラデバイスを取得できているかどうか？
           					if (cameras.length > 0) {
-              					//カメラのデバイス情報を指定して読み取りを開始する
-              					scanner.start( cameras[0] );
+            	
+            					//スキャンの開始
+            					scanner.start(cameras[0]);
           					}
           					else {
-              					console.error('カメラが見つかりません！');
-							}
+            					alert('カメラを見つけることができませんでした。');
+          					}
       					})
-  						var videoTag = document.getElementById('preview');
-  						var scanner = new Instascan.Scanner({ video: videoTag 00 });
-  						Instascan.Camera.getCameras().then(function (cameras) {
-        					if (cameras.length > 0) {
-              					//カメラのデバイス情報を指定して読み取りを開始する
-              					scanner.start( cameras[0] );
-          					} else {
-              					console.error('カメラが見つかりません！');
-       						}
-   						})
-
-  						scanner.addListener('scan', function (value)) {
-  							var resultForm = document.getElement("#rcode");
-    						resultForm.value = value;
-  						}
-  					</script>
+      					.catch(function(err) {
+        					alert(err);
+      					});
+    				</script>
   				</div>
   			</div>
   		</div>
