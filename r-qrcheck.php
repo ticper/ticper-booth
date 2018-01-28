@@ -81,6 +81,15 @@
   					</form>
   					<video id="preview"></video>
   					<script>
+  						Instascan.Camera.getCameras().then(function (cameras) {
+          					if (cameras.length > 0) {
+              					//カメラのデバイス情報を指定して読み取りを開始する
+              					scanner.start( cameras[0] );
+          					}
+          					else {
+              					console.error('カメラが見つかりません！');
+							}
+      					})
   						var videoTag = document.getElementById('preview');
   						var scanner = new Instascan.Scanner({ video: videoTag 00});
 
@@ -88,3 +97,9 @@
   							var resultForm = document.getElementById("resultForm");
     						resultForm.value = value;
   						}
+  					</script>
+  				</div>
+  			</div>
+  		</div>
+  	</body>
+</html>
