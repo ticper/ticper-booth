@@ -93,6 +93,7 @@
   							print('<tr><td>'.$result3['name'].'</td><td>'.$result2['name'].'</td><td>'.$result2['price'].'円</td><td>'.$biko.'</td></tr>');
   						}
   						print('<tr><td></td><td>合計</td><td>'.$gokei.'円</td></tr>');
+  						$_SESSION['rcode'] = $rcode;
   					?>
   				</table>
   			</div>
