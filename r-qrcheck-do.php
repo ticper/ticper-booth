@@ -82,7 +82,7 @@
   							$food = $result['food'];
   							$sql2 = mysqli_query($link, "SELECT name, org, price, stock FROM food WHERE id = '$food'");
   							$result2 = mysqli_fetch_assoc($sql2);
-  							if ($result2['stock'] = 0) {
+  							if ($result2['stock'] == 0) {
   								$biko = "売り切れ";
   							} else {
   								$gokei = $gokei + $result2['price'];
@@ -96,6 +96,14 @@
   						$_SESSION['rcode'] = $rcode;
   					?>
   				</table>
+  				<form action="r-aticket-do.php" method="post">
+  					<div class="input-field col s12">
+  						<input id="azukari" name="azukari" class="validate" type="number">
+  						<label for="azukari">預り金</label>
+  					</div>
+  					<input type="submit" value="送信" class="btn">
+  				</form>
+  				<p>預り金を入力してから送信してください。</p>
   			</div>
   		</div>
   	</body>
