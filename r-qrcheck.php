@@ -50,6 +50,9 @@
 						<li><a href="r-qrcheck.php">受付</a></li>
 						<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">団体・食品<i class="material-icons right">arrow_drop_down</i></a></li>
 						<li><a class="dropdown-trigger" href="#!" data-target="dropdown2">ユーザ<i class="material-icons right">arrow_drop_down</i></a></li>
+						<li><a href="haraimodoshi.php">払い戻し</a></li>
+						<li><a href="status.php">ステータス</a></li>
+						<li><a href="logout.php">ログアウト</a></li>
 					</ul>
 					<ul class="sidenav" id="mobilemenu">
 						<li><a href="r-qrcheck.php">受付</a></li>
@@ -57,6 +60,9 @@
 						<li><a href="a-food.php">食品登録</a></li>
 						<li><a href="i-orgfood.php">団体・食品一覧</a></li>
 						<li><a href="u-registerbooth.php">会計ユーザ登録</a></li>
+						<li><a href="haraimodoshi.php">払い戻し</a></li>
+						<li><a href="status.php">ステータス</a></li>
+						<li><a href="logout.php">ログアウト</a></li>
 					</ul>
 				</div>
 			</div>

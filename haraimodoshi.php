@@ -1,36 +1,9 @@
 <?php
 	session_start();
-		if (isset($_SESSION['user_id']) == '') {
+	if (isset($_SESSION['user_id']) == '') {
 		print("<script>location.href = 'index.php';</script>");
 	} else {
 	}
-	
-	$rcode = $_SESSION['rcode'];
-
-	$azukari = $_POST['azukari'];
-	$price = 0;
-
-	require_once('config/config.php');
-	$data = 0;
-
-	$sql = mysqli_query($link, "SELECT * FROM reserve WHERE rcode = '$rcode'");
-	while ($result = mysqli_fetch_assoc($sql)) {
-		$rand = rand(100000, 999999);
-		$food = $result['food'];
-		$sql5 = mysqli_query($link, "SELECT stock FROM food WHERE id = '$food'");
-		$result5 = mysqli_fetch_assoc($sql5);
-		if($result5['stock'] != 0) {
-			$sql2 = mysqli_query($link, "INSERT INTO tickets VALUES ('$rand', '$food', '0', '$rcode')");
-			$sql3 = mysqli_query($link, "UPDATE food SET stock = stock - 1 WHERE id = '$food'");
-			$sql4 = mysqli_query($link, "SELECT price FROM food WHERE id = '$food'");
-			$result2 = mysqli_fetch_assoc($sql4);
-			$data = $data + 1;
-			$price = $price + $result2['price'];
-		} else {
-
-		}
-	}
-	$_SESSION['rcode'] = '';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -45,7 +18,7 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="ログイン" />
 		<meta property="og:site_name" content="Ticper" />
-		<title>団体・食券一覧 - Ticper</title>
+		<title>ホーム - Ticper</title>
 
 		<!-- Jquery -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -54,6 +27,8 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 	</head>
 	<body>
 		<ul id="dropdown1" class="dropdown-content">
@@ -100,17 +75,45 @@
   		<div class="container">
   			<div class="row">
   				<div class="col s12">
-  					<h3>チケット表示コード</h3>
+  					<h2>払い戻し</h2>
+  					<p>QRコードを撮影するか予約コードを入力してください。</p>
+  					<form action="haraimodoshi-do.php" method="POST">
+  						<div class="input-field s12 m6">
+  							<input id="rcode" class="validate" name="rcode" type="text">
+  							<label for="rcode">アクティベーションコード</label>
+  						</div>
+  						<input type="submit" value="送信" class="btn">
+  					</form>
+  					<video id="preview"></video>
+     				<script>
+      					var videoTag = document.getElementById('preview');
+      					var info = document.getElementById('rcode');
+      					var scanner = new Instascan.Scanner({ video: videoTag });
+      					
+      					//QRコードを認識して情報を取得する
+      					scanner.addListener('scan', function (value) {
+        					info.value = value;
+      					});
+      
+      					//PCのカメラ情報を取得する
+      					Instascan.Camera.getCameras()
+      					.then(function (cameras) {
+          
+          					//カメラデバイスを取得できているかどうか？
+          					if (cameras.length > 0) {
+            	
+            					//スキャンの開始
+            					scanner.start(cameras[0]);
+          					}
+          					else {
+            					alert('カメラを見つけることができませんでした。');
+          					}
+      					})
+      					.catch(function(err) {
+        					alert(err);
+      					});
+    				</script>
   				</div>
-  			</div>
-  			<div class="row">
-  				<div class="col m6 s12">
-  					<img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php print($rcode); ?>&size=300x300" alt="QRコード" />
-  				</div>
-  			</div>
-  			<div class="col s12">
-  				<h4>お釣りは、<?php print($azukari - $price); ?>円です。</h4>
-  				<p>チケット表示コード<b> <?php print($rcode); ?> </b>を顧客端末に入力させるか、QRコードを読み取ってください。</p>
   			</div>
   		</div>
   	</body>
