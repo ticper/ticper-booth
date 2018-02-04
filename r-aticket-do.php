@@ -8,6 +8,7 @@
 	$rcode = $_SESSION['rcode'];
 
 	$azukari = $_POST['azukari'];
+	$price = 0;
 
 	require_once('config/config.php');
 	$data = 0;
@@ -16,12 +17,18 @@
 	while ($result = mysqli_fetch_assoc($sql)) {
 		$rand = rand(100000, 999999);
 		$food = $result['food'];
-		$sql2 = mysqli_query($link, "INSERT INTO tickets VALUES ('$rand', '$food', '0', '$rcode')");
-		$sql3 = mysqli_query($link, "UPDATE food SET stock = stock - 1 WHERE id = '$food'");
-		$sql4 = mysqli_query($link, "SELECT price FROM food WHERE id = '$food'");
-		$result2 = mysqli_fetch_assoc($sql4);
-		$data = $data + 1;
-		$price = $price + $result2['price'];
+		$sql5 = mysqli_query($link, "SELECT stock FROM food WHERE id = '$food'");
+		$result5 = mysqli_fetch_assoc($sql5);
+		if($result5['stock'] != 0) {
+			$sql2 = mysqli_query($link, "INSERT INTO tickets VALUES ('$rand', '$food', '0', '$rcode')");
+			$sql3 = mysqli_query($link, "UPDATE food SET stock = stock - 1 WHERE id = '$food'");
+			$sql4 = mysqli_query($link, "SELECT price FROM food WHERE id = '$food'");
+			$result2 = mysqli_fetch_assoc($sql4);
+			$data = $data + 1;
+			$price = $price + $result2['price'];
+		} else {
+
+		}
 	}
 	$_SESSION['rcode'] = '';
 ?>
